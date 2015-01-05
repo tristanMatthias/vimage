@@ -1,0 +1,12 @@
+extends layout
+
+block js
+    script(src="/javascripts/controllers.js")
+    script(src="/javascripts/filters.js")
+    script(src="/javascripts/app.js")
+    script(src="/javascripts/services.js")
+
+block content
+    div(ng-view)
+
+    | you're home

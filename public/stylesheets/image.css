@@ -1,0 +1,10 @@
+.image { padding-left: 0; padding-right: 0; }
+.image > header { height: 4rem; }
+
+image-canvas menu { height: 4rem; background-color: #eee; line-height: 4rem; padding: 0 2rem; }
+.tools li { float: left; list-style: none; margin-right: 1em; cursor: pointer; }
+.tools li.active { color: #52c5ff; font-weight: bold; }
+
+
+canvas { background: #424344; }
+canvas.hand { cursor: hand; cursor: grab; cursor: -webkit-grab; }

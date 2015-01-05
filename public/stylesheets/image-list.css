@@ -1,0 +1,10 @@
+main { padding: 2em; }
+
+.image-list li { list-style: none; width: 23%; margin-right: 2.6666666666666665%; display: inline-block; background-color: white; margin-bottom: 2em; min-height: 10em; padding: 1em; 
+                 text-align: center; }
+.image-list li:nth-child(4n) { margin-right: 0; }
+.image-list li a:nth-child(1) { min-height: 20rem; display: block; margin-bottom: 2rem; vertical-align: middle; }
+.image-list li img { max-width: 100%; max-height: 20rem; display: block; margin: auto; vertical-align: middle; transition: opacity 0.25s; }
+.image-list li img:hover { opacity: 0.7; }
+.image-list li a:nth-child(2) { float: left; height: 4rem; line-height: 5rem; }
+.image-list li button { float: right;  }

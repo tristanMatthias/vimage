@@ -1,0 +1,8 @@
+canvas(tabindex="0" class="ng-class:tool")
+menu
+    ul.tools
+        li(ng-repeat="_tool in tools" ng-click="selectTool(_tool)" ng-class="{'active': (_tool == tool)}") {{_tool}}
+
+
+
+    span.right {{image.name}}

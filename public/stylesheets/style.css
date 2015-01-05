@@ -1,0 +1,56 @@
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+
+.left  { float: left; }
+.right { float: right; }
+.clear { clear: both; }
+.clear:after { content: " "; display: inline-block; clear: both; }
+html, body { height: 100%; font-size: 10px; font-family: "Proxima Nova"; background-color: #f8f8f8; }
+a       { color: #52c5ff; text-decoration: none; font-weight: bold; transition: color 0.25s; } 
+a:hover { color: #3ea6e6; }
+a:focus { color: #3088cf; }
+/*
+
+/* ========================================================================================================= App
+ */
+.app { font-size: 1.5rem; height: calc(100% - 4rem); }
+.view { height: 100%; }
+main { width: 80%; height: 100%; }
+
+
+
+/* ========================================================================================================= Header
+ */
+body > header { height: 4rem; background-color: white; border-bottom: 1px solid #ddd; padding: 0 2rem; line-height: 4rem; }
+h1 { color: #52c5ff; }
+h2 { display: inline-block; }
+body > header a  { font-size: 1.5rem; margin-right: 2rem; }
+
+.user-menu { position: fixed; right: 1rem; top: 4rem; background-color: white; list-style: none; font-size: 1.5rem; border: 1px solid #ddd; border-top: 0; }
+.user-menu li { display: block; line-height: 4rem; padding: 0 2rem; }
+*/
+
+
+/* ========================================================================================================= Forms
+ */
+form { background-color: white; padding: 2rem; }
+form h1, form h2, form h3, form h4, form .error { display: block; text-align: center; margin-bottom: 2rem; }
+input { width: 100%; border: 0; font-size: 1.5rem; margin-bottom: 2rem; padding: 1rem; }
+input:focus { background-color: #f8f8f8; }
+button { display: block; margin: 1rem auto 0 auto; padding: 1rem 2rem; font-size: 1.5rem; border: 0; background-color: #52c5ff; color: white; font-weight: bold; transition: background-color 0.25s; }
+button:hover { background-color: #3ea6e6; }
+button:focus { background-color: #3088cf; }
+.error { font-size: 1.5rem; display: block; margin-bottom: 1rem; color: #fc357a; }
+
+
+
+/* ========================================================================================================= Message Feed
+ */
+message-feed { position: fixed; top: 4rem; right: 0; width: 20%; height: calc(100% - 4rem); border-left: 1px solid #ddd; background-color: white; font-size: 1.5rem; } 
+/*message-feed .messages { width: 100%; height: 100%; }*/
+message-feed .feed { position: absolute; width: 100%; top: 0; bottom: 4rem; overflow: auto; } 
+message-feed .feed li { list-style: none; padding: 1rem; border-bottom: 1px solid #f8f8f8; word-wrap: break-word; }
+message-feed .feed li time { float: right; font-size: 1.2rem; color: #aaa; margin-left: 1rem; }
+message-feed form { position: absolute; width: 100%; display: block; bottom: 0; padding: 0;  }
+message-feed textarea { display: inline-block; width: calc(100% - 6rem); height: 4rem; bottom: 0; border: 0; border-top: 1px solid #ddd; padding: 1rem; resize: none; vertical-align: middle; font-size: 1.5rem; } 
+message-feed textarea:focus { background-color: #fbfbfb; } 
+message-feed button { display: inline-block; width: 6rem; height: 4rem; bottom: 0; border: 0; margin: 0; font-weight: bold; font-size: 1rem; border-top: 1px solid #52c5ff; border-left: 1px solid #f8f8f8; vertical-align: middle; } 

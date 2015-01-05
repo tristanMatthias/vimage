@@ -1,0 +1,9 @@
+aside.messages
+    ul.feed
+        li(ng-repeat="message in messages")
+            time {{message.date | date:"h:mma"}} 
+            a(href="api/v1/user/{{message.user_id}}") {{(message.user_id === user._id) ? "You" : message.name }}
+            span : {{message.content}}
+    form(ng-submit="send()")
+        textarea(ng-model="msg" placeholder="Write a message..." ng-keydown="keyDown($event)" ng-keyup="keyUp($event)")
+        button Send

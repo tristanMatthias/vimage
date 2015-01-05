@@ -1,0 +1,18 @@
+extends ../layout-app
+
+block js
+    script(src="/components/socket.io-client/socket.io.js")
+    script(src="/javascripts/app.js")
+    script(src="/javascripts/imagesList.js")
+    script(src="/javascripts/image.js")
+    script(src="/javascripts/imageNew.js")
+    script(src="/javascripts/messageFeed.js")
+    script(src="/javascripts/imageCanvas.js")
+
+
+    script.
+        var user = !{user}
+
+block content
+    .app
+        .view(ng-view)
