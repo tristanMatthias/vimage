@@ -15,7 +15,6 @@ module.exports = function(path, app) {
      * Functions
      *     /                  List all of the users
      *     /details/:email:   Details of a specific user
-     *     /add               Add a new user
      *     /remove/:email     Removes a user            
      *     /login             Logs a user in
      *     /logout            Logs a user out
@@ -35,7 +34,7 @@ module.exports = function(path, app) {
 
 
     // Adds a new user
-    app.post(path, auth, function(req, res, next) {
+    app.post(path, function(req, res, next) {
         // Check if user with that email exists...
         User.find({email: req.body.email}, function(err, results) {
             // If they do, throw error
