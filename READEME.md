@@ -1,4 +1,7 @@
-# Database install
+## Installation
+## Bower
+1. Run bower install
+### Database install
 1. [Download Mongodb](http://www.mongodb.org/)
 2. Install on your local machine
 3. Create a folder "/data/db"
