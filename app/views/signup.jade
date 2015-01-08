@@ -1,0 +1,12 @@
+extends layout
+
+block css
+    link(rel="stylesheet", href="/stylesheets/signup.css")
+block content
+    form(action="/api/v1/user" method="post")
+        h2 Signup
+        input(type="text"     name="name"     placeholder="name")
+        input(type="email"    name="email"    placeholder="email")
+        input(type="password" name="password" placeholder="password")
+
+        button Signup!

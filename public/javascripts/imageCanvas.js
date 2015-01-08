@@ -22,6 +22,8 @@ app.directive('imageCanvas', function(){
             $scope.tool  = $scope.tools[1];
             $scope.scale = 1;
 
+            this.comments = [];
+
             registerTransforms(self.ctx);
 
 
@@ -51,7 +53,6 @@ app.directive('imageCanvas', function(){
             });
             this.c.addEventListener("keyup", function(evt) {
                 if (evt.keyCode === 32) { //spacebar
-                    // console.log(oldTool)
                     $scope.tool = oldTool;
                 }
                 $scope.$apply();
@@ -86,6 +87,16 @@ app.directive('imageCanvas', function(){
             self.c.addEventListener('mouseup',function(evt){
                 dragStart = null;
                 if (!dragged) zoom(evt.shiftKey ? -1 : 1 );
+                if ($scope.tool == "draw") {
+                    var coordStart = self.ctx.transformedPoint(dragStartAbsoluteX, dragStartAbsoluteY);
+                    self.comments.push({
+                        x:       coordStart.x, 
+                        y:       coordStart.y, 
+                        width:   lastX - dragStartAbsoluteX, 
+                        height:  lastY  - dragStartAbsoluteY,
+                        content: "Hey wassup"
+                    });
+                }
             },false);
 
             var scaleFactor = 1.1;
@@ -186,6 +197,14 @@ app.directive('imageCanvas', function(){
                     self.ctx.strokeStyle = 'blue';
                     self.ctx.stroke();
                 }
+                for(var i in self.comments) {
+                    var comment = self.comments[i];
+                    self.ctx.beginPath();
+                    self.ctx.rect(comment.x, comment.y, comment.width, comment.height);
+                    self.ctx.lineWidth = 1;
+                    self.ctx.strokeStyle = 'blue';
+                    self.ctx.stroke();
+                }
             }
             function resize() {
 
@@ -199,7 +218,6 @@ app.directive('imageCanvas', function(){
                 draw();
             }
             resize();
-            console.log("GOT HERE");
             $scope.selectTool = function(tool) {
                 $scope.tool = tool
             }

@@ -25,14 +25,13 @@ h1 { color: #52c5ff; }
 h2 { display: inline-block; }
 body > header a  { font-size: 1.5rem; margin-right: 2rem; }
 
-.user-menu { position: fixed; right: 1rem; top: 4rem; background-color: white; list-style: none; font-size: 1.5rem; border: 1px solid #ddd; border-top: 0; }
+.user-menu { position: fixed; z-index: 10; right: 1rem; top: 4rem; background-color: white; list-style: none; font-size: 1.5rem; border: 1px solid #ddd; border-top: 0; }
 .user-menu li { display: block; line-height: 4rem; padding: 0 2rem; }
-*/
 
 
 /* ========================================================================================================= Forms
- */
-form { background-color: white; padding: 2rem; }
+**/
+form { background: white; padding: 2rem; }
 form h1, form h2, form h3, form h4, form .error { display: block; text-align: center; margin-bottom: 2rem; }
 input { width: 100%; border: 0; font-size: 1.5rem; margin-bottom: 2rem; padding: 1rem; }
 input:focus { background-color: #f8f8f8; }
