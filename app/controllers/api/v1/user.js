@@ -2,7 +2,7 @@ var e = require(__APPROOT__ + "/app/lib/errors");
 var db = require("mongoose");
 var User = db.model("User");
 var passwordHash = require("password-hash");
-
+require("colors")
 
 var auth = __AUTH__;
 
@@ -36,7 +36,7 @@ module.exports = function(path, app) {
 
     // Adds a new user
     app.post(path, function(req, res, next) {
-        console.log(e)
+        console.log("\n\n\n\nI GOT HERE".red);
 
         if (!req.body.name)     return next(new e.ServerError("Please provide a name",    422, "name"));
         if (!req.body.email)    return next(new e.ServerError("Please provide an email",  422, "email"));

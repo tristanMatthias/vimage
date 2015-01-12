@@ -28,7 +28,6 @@ module.exports = function(app, cb) {
             // For each file, add the rendering function);
             function render(req, res) {
                 if (req.session.user) delete req.session.user.password;
-                console.log(file);
                 res.render(file, {
                     flash: req.flash(),
                     user: JSON.stringify(req.session.user)

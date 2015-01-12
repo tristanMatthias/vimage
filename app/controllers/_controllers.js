@@ -38,7 +38,6 @@ module.exports = function(app, cb) {
             
         } else no();
         function no() {
-            console.log("RUNNING NO");
             return res.render("index");
         }
     })
