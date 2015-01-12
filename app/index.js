@@ -10,11 +10,15 @@ var flash        = require('connect-flash');
 var passport     = require('passport');
 var multer       = require('multer');
 
+var app         = express();
+
+
 global.__APPROOT__       = path.resolve(__dirname, "../");
-global.__DB_CONNECTION__ = "mongodb://localhost/vumage"
+global.__DB_CONNECTION__ = (app.get("env") === "development") ? "mongodb://localhost/vumage" : "mongodb://admin:vumage2015@ds031581.mongolab.com:31581/heroku_app33182959";
 global.__UPLOAD__        = multer({dest: "./uploads"});
 
-var app         = express();
+
+
 var db          = require('./db');
 var _passport   = require('./passport');
 var controllers = require('./controllers/_controllers');
