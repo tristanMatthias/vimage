@@ -1,3 +1,4 @@
+var e = require(__APPROOT__ + "/app/lib/errors");
 var db = require("mongoose");
 var User = db.model("User");
 var passwordHash = require("password-hash");
@@ -35,13 +36,19 @@ module.exports = function(path, app) {
 
     // Adds a new user
     app.post(path, function(req, res, next) {
+        console.log(e)
+
+        if (!req.body.name)     return next(new e.ServerError("Please provide a name",    422, "name"));
+        if (!req.body.email)    return next(new e.ServerError("Please provide an email",  422, "email"));
+        if (!req.body.password) return next(new e.ServerError("Please provide a password",422, "password"));
+
         // Check if user with that email exists...
         User.find({email: req.body.email}, function(err, results) {
             // If they do, throw error
-            if (results.length) return next(new Error("A user with that email already exists"));
+            if (results.length) return next(new e.ServerError("This email is already in use", 409, "email"));
             // Otherwise create a new user
             req.body.password = passwordHash.generate(req.body.password);
-            var c = new User(req.body).save(send(req, res, next, true));    
+            var c = new User(req.body).save(send(req, res, next, true));
         });
     });
 
@@ -54,12 +61,19 @@ module.exports = function(path, app) {
 
     // Logs a user in
     app.post("/login", auth, function(req, res, next) {
-        res.redirect("/app");
+        res.format({
+            json: function() {
+                res.json({message: "ok"});
+            },
+            html: function() {
+                res.redirect("/");
+            }
+        })
     });
 
     app.get("/logout", auth, function(req, res, next) {
         req.logout();
-        req.session.user = null;
+        delete req.session.user;
         res.redirect("/");
     });
 }

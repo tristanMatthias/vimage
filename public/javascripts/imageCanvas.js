@@ -11,7 +11,7 @@ app.directive('imageCanvas', function(){
                 if (newval.url) ctrl.createImage();
             }, true);
         },
-        templateUrl: "/view/image-canvas",
+        templateUrl: "/app/view/image-canvas",
         controller: function($scope, $element, $window) {
             var self     = this;
             this.c       = $element.children()[0];

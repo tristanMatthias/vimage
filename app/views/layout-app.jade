@@ -8,17 +8,8 @@ html(ng-app="app" ng-controller="AppController")
     script(src="/components/angular/angular.min.js")
     script(src="/components/angular-route/angular-route.min.js")
     script(src="/components/angular-resource/angular-resource.min.js")
-    script(src="/components/angular-upload/angular-upload.min.js")
+    script(src="/components/ng-file-upload/angular-file-upload.min.js")
     block js
   body
-    header 
-        h1.left
-            a(href="#/") Vimage
-        .right
-            a(href="#/new-image") &#43; Add image
-            h2(ng-click="showUserMenu = !showUserMenu") Hello, {{user.name}} &nbsp; &#9660;
-
-        ul(ng-show="showUserMenu").user-menu
-            li 
-                a(href="/logout") Logout
+    include partials/header
     block content

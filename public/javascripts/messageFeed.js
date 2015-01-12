@@ -8,7 +8,7 @@ var app = angular.module('app');
 app.directive("messageFeed", function($timeout) {
     return {
         restrict: "E",
-        templateUrl: "/view/messageFeed",
+        templateUrl: "/app/view/messageFeed",
         scope: {
             imageID: "=imageId"
         },

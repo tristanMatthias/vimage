@@ -8,7 +8,7 @@ html, body { height: 100%; font-size: 10px; font-family: "Proxima Nova"; backgro
 a       { color: #52c5ff; text-decoration: none; font-weight: bold; transition: color 0.25s; } 
 a:hover { color: #3ea6e6; }
 a:focus { color: #3088cf; }
-/*
+.main   { font-size: 1.5rem; margin: auto; max-width: 960px;}
 
 /* ========================================================================================================= App
  */
@@ -33,13 +33,13 @@ body > header a  { font-size: 1.5rem; margin-right: 2rem; }
 **/
 form { background: white; padding: 2rem; }
 form h1, form h2, form h3, form h4, form .error { display: block; text-align: center; margin-bottom: 2rem; }
-input { width: 100%; border: 0; font-size: 1.5rem; margin-bottom: 2rem; padding: 1rem; }
+input { width: 100%; border-width: 0; font-size: 1.5rem; margin-bottom: 2rem; padding: 1rem; }
 input:focus { background-color: #f8f8f8; }
 button { display: block; margin: 1rem auto 0 auto; padding: 1rem 2rem; font-size: 1.5rem; border: 0; background-color: #52c5ff; color: white; font-weight: bold; transition: background-color 0.25s; }
 button:hover { background-color: #3ea6e6; }
 button:focus { background-color: #3088cf; }
 .error { font-size: 1.5rem; display: block; margin-bottom: 1rem; color: #fc357a; }
-
+.ng-invalid.ng-touched { background-color: #f9e7ee; }
 
 
 /* ========================================================================================================= Message Feed

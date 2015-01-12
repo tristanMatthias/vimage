@@ -1,12 +1,12 @@
 extends layout
 
-block js
-    script(src="/javascripts/controllers.js")
-    script(src="/javascripts/filters.js")
-    script(src="/javascripts/app.js")
-    script(src="/javascripts/services.js")
-
+block css
+    link(rel="stylesheet", href="/stylesheets/index.css")
 block content
-    div(ng-view)
-
-    | you're home
+    .main
+        h1 Welcome to Vimage
+        p Please 
+            a(href="signup") signup 
+            | or 
+            a(href="login") login 
+            | to continue

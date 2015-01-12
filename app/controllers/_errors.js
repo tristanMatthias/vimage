@@ -15,10 +15,18 @@ module.exports = function(app, cb) {
     if (app.get('env') === 'development') {
         app.use(function(err, req, res, next) {
             res.status(err.status || 500);
-            res.render('error', {
-                message: err.message,
-                error: err
-            });
+            res.format({
+                json: function() {
+                    res.send(err);
+                },
+                html: function() {
+                    res.render('error', {
+                        error: err
+                    });
+                }
+            })
+
+            
         });
     }
 

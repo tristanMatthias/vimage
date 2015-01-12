@@ -6,14 +6,14 @@ var dir = "app/controllers/";
 // Load all of the routes in the folder
 module.exports = function(app, cb) {
     // Setup basic routes
-    fs.readdirSync(dir).forEach(function(file) {
-        if (fs.statSync(dir + file).isDirectory()) return;
+    // fs.readdirSync(dir).forEach(function(file) {
+    //     if (fs.statSync(dir + file).isDirectory()) return;
 
-        var name = file.split(".")[0];
-        if (name.indexOf("_") != 0) {
-            require("./" + name)(name, app);
-        }
-    });
+    //     var name = file.split(".")[0];
+    //     if (name.indexOf("_") != 0) {
+    //         require("./" + name)(name, app);
+    //     }
+    // });
 
     // Setup api
     fs.readdirSync(dir + "api").forEach(function(version) {
@@ -27,6 +27,21 @@ module.exports = function(app, cb) {
             });
         }
     });
+
+
+    app.get("/", function(req, res) {
+        if (req.session) {
+            if (req.session.user) return res.render("app/index.private.jade", {
+                user: JSON.stringify(req.session.user)
+            });
+            else no();
+            
+        } else no();
+        function no() {
+            console.log("RUNNING NO");
+            return res.render("index");
+        }
+    })
 
 
     cb();

@@ -1,6 +1,9 @@
-var db = require("mongoose");
-var Image = db.model("Image");
-var auth = __AUTH__;
+var e      = require(__APPROOT__ + "/app/lib/errors");
+var db     = require("mongoose");
+var Image  = db.model("Image");
+var auth   = __AUTH__;
+var upload = __UPLOAD__;
+
 module.exports = function(path, app) {    
 
     /**
@@ -14,7 +17,8 @@ module.exports = function(path, app) {
      *     list: List all of the images in the app
      */
 
-    app.get(path, function(req, res) {
+    // Get list or specific image
+    app.get(path, auth, function(req, res) {
         // Searching for specific image
         if (req.query._id) {
             Image.findById(req.query._id, cb);
@@ -27,13 +31,22 @@ module.exports = function(path, app) {
         }
     });
 
-    app.post(path, auth, function(req, res) {
-        req.body.creator = req.session.user._id;
-        var c = new Image(req.body).save(function(err, image, count) {
+    // Add a new image
+    app.post(path, auth, upload, function(req, res, next) {
+        if (!req.body.name)    return next(new e.ServerError("Please provide a name", 422, "name"));
+        if (!req.files) return next(new e.ServerError("Please provide a image", 422, "image"));
+
+
+        var i     = req.body;
+        i.url     = req.files.file.path;
+        i.creator = req.session.user._id;
+
+        var c = new Image(i).save(function(err, image, count) {
             if (err) return next(err);
-            res.send({status: "ok"});
+            res.send(image);
         });
     });
+    
     app.delete(path+":id", auth, function(req, res) {
         console.log("\n\n\n\nDeleting image");
         Image.remove({_id: req.params.id}, function(err, image, count) {

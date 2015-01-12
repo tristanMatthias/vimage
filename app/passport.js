@@ -8,7 +8,6 @@ module.exports = function(done) {
     passport.use(new LocalStrategy({
             usernameField: 'email',
         }, function(email, password, done) {
-            console.log("asd",  arguments);
             User.findOne({email : email}, function(err, user) {
                 if (err)   return done(err);
                 if (!user) return done(null, false, {"message": "Incorrect username"});
@@ -36,9 +35,9 @@ module.exports = function(done) {
         passport.authenticate('local', function(err, user, info) {
             if (info) {
                 req.flash("error", info.message);
+                req.flash("email", req.body.email);
             }
             if (err) { return next(err) }
-            console.log(user);
             if (!user && !req.session.user) { return res.redirect('/login') }
             if (user) req.session.user = user;
             return next();

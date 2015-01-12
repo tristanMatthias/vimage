@@ -1,0 +1,15 @@
+header 
+    h1.left
+        a(href=((user) ? '#/' : '/')) Vimage
+    if (user != null)
+        .right
+            a(href="#/new-image") &#43; Add image
+            h2(ng-click="showUserMenu = !showUserMenu") Hello, {{user.name}} &nbsp; &#9660;
+
+        ul(ng-show="showUserMenu").user-menu
+            li 
+                a(href="/logout") Logout
+    else
+        .right
+            a(href="login") Login
+            a(href="signup") Signup

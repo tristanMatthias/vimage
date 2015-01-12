@@ -3,21 +3,21 @@
 *
 * List of phones
 */
-var app = angular.module('app', ["ngRoute", "ngResource"]);
+var app = angular.module('app', ["ngRoute", "ngResource", "angularFileUpload"]);
 
 
 app.config(['$routeProvider',function($routeProvider) {
     $routeProvider
         .when("/", {
-            templateUrl: "/view/images-list",
+            templateUrl: "/app/view/images-list",
             controller: "ImagesListCtrl"
         })
         .when("/images/:id", {
-            templateUrl: "/view/image",
+            templateUrl: "/app/view/image",
             controller: "ImageCtrl"
         })
         .when("/new-image", {
-            templateUrl: "/view/image-new",
+            templateUrl: "/app/view/image-new",
             controller: "ImageNewCtrl"
         })
         .otherwise({

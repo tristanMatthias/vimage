@@ -1,6 +1,3 @@
-GLOBAL.__DB_CONNECTION__ = "mongodb://localhost/vimage"
-
-
 var express      = require('express');
 var async        = require('async');
 var path         = require('path');
@@ -11,7 +8,11 @@ var bodyParser   = require('body-parser');
 var session      = require('express-session');
 var flash        = require('connect-flash');
 var passport     = require('passport');
+var multer       = require('multer');
 
+global.__APPROOT__       = path.resolve(__dirname, "../");
+global.__DB_CONNECTION__ = "mongodb://localhost/vimage"
+global.__UPLOAD__        = multer({dest: "./uploads"});
 
 var app         = express();
 var db          = require('./db');
@@ -39,9 +40,13 @@ app.use(cookieParser("keyboard cat"));
 app.use(session({secret : 'keyboard cat'}));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use('/components', express.static(path.join(__dirname, '../bower_components')));
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+// app.use(multer({
+//     dest: "./uploads"
+// }));
 
 
 module.exports = function(cb) {
