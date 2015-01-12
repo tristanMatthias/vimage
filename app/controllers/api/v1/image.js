@@ -10,7 +10,7 @@ module.exports = function(path, app) {
      * Images endpoint
      * /api/v1/image
      *
-     * Images in the vimage app
+     * Images in the vumage app
      *
      * Functions
      *     add: Add a new image

@@ -11,8 +11,8 @@
 
 ---
 
-## Running Vimage
+## Running Vumage
 1. Open a new terminal tab
-2. Navigate to Vimage repo
+2. Navigate to Vumage repo
 3. run "npm start"
 4. Access in web browser at "localhost:3000/login"

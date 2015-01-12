@@ -11,7 +11,7 @@ var passport     = require('passport');
 var multer       = require('multer');
 
 global.__APPROOT__       = path.resolve(__dirname, "../");
-global.__DB_CONNECTION__ = "mongodb://localhost/vimage"
+global.__DB_CONNECTION__ = "mongodb://localhost/vumage"
 global.__UPLOAD__        = multer({dest: "./uploads"});
 
 var app         = express();
