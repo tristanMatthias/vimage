@@ -36,7 +36,7 @@ module.exports = function(path, app) {
 
     // Adds a new user
     app.post(path, function(req, res, next) {
-        console.log("\n\n\n\nI GOT HERE".red);
+        __WINSTON__.error("\n\n\n\nI GOT HERE".red, req.body);
 
         if (!req.body.name)     return next(new e.ServerError("Please provide a name",    422, "name"));
         if (!req.body.email)    return next(new e.ServerError("Please provide an email",  422, "email"));

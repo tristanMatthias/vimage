@@ -16,7 +16,11 @@ var app         = express();
 global.__APPROOT__       = path.resolve(__dirname, "../");
 global.__DB_CONNECTION__ = (app.get("env") === "development") ? "mongodb://localhost/vumage" : "mongodb://admin:vumage2015@ds031581.mongolab.com:31581/heroku_app33182959";
 global.__UPLOAD__        = multer({dest: "./uploads"});
+global.__WINSTON__ = require("winston");
 
+__WINSTON__.add(__WINSTON__.transports.File, { filename: 'log.log' });
+__WINSTON__.remove(__WINSTON__.transports.Console);
+__WINSTON__.level = "info";
 
 
 var db          = require('./db');
