@@ -19,11 +19,15 @@ module.exports = function(app, cb) {
             }
 
 
-            if ((split.length > 1) && (split.pop() === "private")){
-                app.get(url, __AUTH__, render);
-            } else {
-                app.get(url, render);
+            var auth = [];
+            var funcs = {
+                "private": __AUTH__,
+                "admin": __ADMIN__
             }
+            if ((split.length > 1)) {
+                auth.push(funcs[split.pop()]);
+            }
+            app.get(url,auth, render);
 
             // For each file, add the rendering function);
             function render(req, res) {

@@ -1,0 +1,6 @@
+extends layout
+
+block content
+    form(method="post" action="/api/v1/user/password/reset")
+        input(name="email" placeholder="Email")
+        button Reset password

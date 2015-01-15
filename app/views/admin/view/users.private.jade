@@ -1,0 +1,23 @@
+input(ng-model="query")
+
+table.users
+    tr
+        th ID
+        th Name
+        th Email
+        th Permissions
+    tr(ng-repeat="user in users")
+        td 
+            input(ng-model="user._id" disabled)
+        td 
+            input(ng-model="user.name" ng-disabled="! isEditing(user)")
+        td 
+            input(ng-model="user.email" ng-disabled="! isEditing(user)")
+        td 
+            input(ng-model="user.permission" ng-disabled="! isEditing(user)")
+        td
+            span(ng-click="toggleEditing(user)") {{ (isEditing(user)) ? "Cancel" : "Edit" }} 
+            span(ng-click="user.$save();   toggleEditing(user)" ng-show="isEditing(user)") Save 
+            span(ng-click="user.$delete(); toggleEditing(user)" ng-show="isEditing(user)") Delete
+
+        

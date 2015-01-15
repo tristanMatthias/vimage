@@ -20,7 +20,7 @@ module.exports = function(server) {
             socket.leave(socket.room);
         });
         socket.on("disconnect", function() {
-            console.log("\n\n\nSEE ya")
+            // TODO
         })
 
     });

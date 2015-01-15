@@ -10,6 +10,8 @@ html(ng-app="app" ng-controller="AppController")
     script(src="/components/angular-resource/angular-resource.min.js")
     script(src="/components/ng-file-upload/angular-file-upload.min.js")
     block js
+    script.
+        var user = !{user}
   body
     include partials/header
     block content

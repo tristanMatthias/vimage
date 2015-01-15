@@ -1,0 +1,8 @@
+extends ../layout-app
+
+block js
+    script(src="/components/socket.io-client/socket.io.js")
+    script(src="/javascripts/admin/app.js")
+block content
+    .app
+        .view(ng-view)

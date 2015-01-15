@@ -1,3 +1,5 @@
+var e = require(__APPROOT__ + "/app/lib/errors");
+
 module.exports = function(done) {
     var passport      = require("passport");
     var LocalStrategy = require("passport-local");
@@ -43,5 +45,16 @@ module.exports = function(done) {
             return next();
         })(req, res, next);
     }
+
+    global.__ADMIN__ = function(req, res, next) {
+        // Not logged in
+        if (!req.session.user) { 
+            return next(new e.ServerError("Please login", 403)); 
+        }
+        if (req.session.user.permission < __ADMIN_PERMISSION__) { 
+            return next(new e.ServerError("You do not have access to this page", 403)); 
+        }
+        next();
+    } 
     done();
 }
