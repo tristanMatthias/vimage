@@ -1,0 +1,17 @@
+extends ../layout-app
+
+block css
+    link(rel="stylesheet", href="/stylesheets/login.css")
+block js
+    script(src="/javascripts/login/login.js")
+
+block content
+
+    .app(ng-app="login" ng-controller="LoginController as vm")
+        form(ng-submit="vm.submit()")
+            h1 Login to Vumage
+            span.error {{vm.error}}
+            input(type="text"     placeholder="Username" ng-model="vm.user.email"    autofocus )
+            input(type="password" placeholder="Password" ng-model="vm.user.password"           )
+
+            button Login

@@ -1,5 +1,6 @@
+block vars
 doctype html
-html(ng-app="app" ng-controller="AppController")
+html(ng-app="#{app}" ng-controller="#{appController}")
   head
     title(ng-bind-template="#{title} {{query}}")= title
     link(rel='stylesheet', href='/stylesheets/style.css')
@@ -11,7 +12,10 @@ html(ng-app="app" ng-controller="AppController")
     script(src="/components/ng-file-upload/angular-file-upload.min.js")
     block js
     script.
-        var user = !{user}
+        var user  = !{user}
+    if (flash)
+        script.
+            var flash = !{flash}
   body
     include partials/header
     block content

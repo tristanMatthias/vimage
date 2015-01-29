@@ -13,3 +13,17 @@ setupApp(function(app) {
 
     sockets(server);
 })
+
+var sys = require("sys");
+
+var stdin = process.openStdin();
+
+stdin.addListener("data", function(d) {
+    var cmd = d.toString().substring(0, d.length-1);
+
+    switch(cmd) {
+        case "exit": 
+            process.exit(0);
+            break;
+    }
+});

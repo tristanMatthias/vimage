@@ -25,6 +25,7 @@ var User          = db.model("User");
 var PasswordReset = db.model("PasswordReset");
 var passwordHash  = require("password-hash");
 var crypto        = require("crypto");
+var jwt           = require('jsonwebtoken');
 
 require("colors")
 
@@ -158,6 +159,24 @@ module.exports = function(path, app) {
     });
 
 
+    // // Logs a user in
+    // app.post("/login",
+    //     function(req, res, next) {
+    //         User.findOne({email : req.body.email}, function(err, user) {
+                
+    //             if (err)   return next(err);
+
+    //             if (!user) return next(new e.ServerError("User does not exist", 401, "email"));
+    //             if (!passwordHash.verify(req.body.password, user.password)) {
+    //                 return next(new e.ServerError("Incorrect password", 401, "password"));
+    //             }
+    //             var req.session.user = user;
+    //             res.redirect("/");
+    //             // var token = jwt.sign(user, "23g2j42t208", {expiredInMinutes: 2});
+    //             // res.json({token: token});
+    //         });
+    //     }
+    // );
     // Logs a user in
     app.post("/login", auth, function(req, res, next) {
         res.format({
@@ -177,6 +196,7 @@ module.exports = function(path, app) {
         delete req.session.user;
         res.redirect("/");
     });
+
 }
 
 

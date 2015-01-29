@@ -1,5 +1,11 @@
 extends ../layout-app
 
+
+block vars
+    - var app           = "app";
+    - var appController = "AppController";
+
+
 block js
     script(src="/components/socket.io-client/socket.io.js")
     script(src="/javascripts/app.js")
@@ -10,6 +16,7 @@ block js
     script(src="/javascripts/imageCanvas.js")
     script(src="/javascripts/profile.js")
     
+
 block content
     .app
         .view(ng-view)

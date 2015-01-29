@@ -1,17 +1,24 @@
--var _user
 if (user)
     -var _user = JSON.parse(user);
 
+
 block js
     script(src="/javascripts/admin/app.js")
+
+
 header 
     h1.left
-        a(href=((user) ? '#/' : '/')) Vumage
-    if (user != null)
+        a(href='/#/') Vumage
+
+    //- If logged in show app header
+    if ( user != null )
         .right
             a(href="#/new-image") &#43; Add image
-            if (_user.permission >= 10)
+
+            //- If admin user show admin link
+            if ( _user.permission >= 10 )
                 a(href="/admin") Admin
+                
             h2(ng-click="showUserMenu = !showUserMenu") Hello, #{_user.name} &nbsp; &#9660;
 
         ul(ng-show="showUserMenu").user-menu
@@ -19,7 +26,9 @@ header
                 a(href="/#/account") My account
             li 
                 a(href="/logout") Logout
+
     else
+        //- If not logged in show public header
         .right
             a(href="login") Login
             a(href="signup") Signup

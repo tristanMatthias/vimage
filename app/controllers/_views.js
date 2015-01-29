@@ -33,7 +33,7 @@ module.exports = function(app, cb) {
             function render(req, res) {
                 if (req.session.user) delete req.session.user.password;
                 res.render(file, {
-                    flash: req.flash(),
+                    flash: JSON.stringify(req.flash()),
                     user: JSON.stringify(req.session.user)
                 })
             }

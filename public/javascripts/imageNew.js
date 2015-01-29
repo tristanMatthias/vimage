@@ -10,6 +10,7 @@
         $scope.image = [];
         
         $scope.addImage = function() {
+            console.log($scope.image[0])
             if ($scope.image.length) { 
                 $upload.upload({
                     data: {

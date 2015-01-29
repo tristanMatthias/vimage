@@ -4,6 +4,9 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
     block css
+    if (flash)
+        script.
+            var flash = !{flash}
     block js
   body
     include partials/header

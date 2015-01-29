@@ -6,5 +6,5 @@ image-canvas menu { height: 4rem; background-color: #eee; line-height: 4rem; pad
 .tools li.active { color: #52c5ff; font-weight: bold; }
 
 
-canvas { background: #424344; }
+canvas { background: #424344; height: calc(100% - 4rem); }
 canvas.hand { cursor: hand; cursor: grab; cursor: -webkit-grab; }

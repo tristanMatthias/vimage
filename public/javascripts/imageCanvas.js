@@ -89,7 +89,7 @@
                 },false);
                 self.c.addEventListener('mouseup',function(evt){
                     dragStart = null;
-                    if (!dragged) zoom(evt.shiftKey ? -1 : 1 );
+                    // if (!dragged) zoom(evt.shiftKey ? -1 : 1 );
                     if ($scope.tool == "draw") {
                         var coordStart = self.ctx.transformedPoint(dragStartAbsoluteX, dragStartAbsoluteY);
                         self.comments.push({
@@ -115,13 +115,15 @@
                     draw();
                 }
 
-                var handleScroll = function(evt){
-                    var delta = evt.wheelDelta ? evt.wheelDelta/40 : evt.detail ? -evt.detail : 0;
-                    if (delta) zoom(delta);
-                    return evt.preventDefault() && false;
-                };
-                self.c.addEventListener('DOMMouseScroll',handleScroll,false);
-                self.c.addEventListener('mousewheel',handleScroll,false);
+
+                // TODO: Zooming/scrolling
+                // var handleScroll = function(evt){
+                //     var delta = evt.wheelDelta ? evt.wheelDelta/40 : evt.detail ? -evt.detail : 0;
+                //     if (delta) zoom(delta);
+                //     return evt.preventDefault() && false;
+                // };
+                // self.c.addEventListener('DOMMouseScroll',handleScroll,false);
+                // self.c.addEventListener('mousewheel',handleScroll,false);
                 
                 function registerTransforms(ctx){
                     var svg = document.createElementNS("http://www.w3.org/2000/svg",'svg');
@@ -213,10 +215,11 @@
 
                     var pStyle        = window.getComputedStyle($element[0].parentElement);
                     var toolbarHeight = window.getComputedStyle($element[0].children[1]).height.slice(0,-2);
-                    var headerHeight  = window.getComputedStyle(document.body.children[0]).height.slice(0,-2);
+                    // var headerHeight  = window.getComputedStyle(document.body.children[0]).height.slice(0,-2);
+                    var headerHeight  = 40;
                     
                     
-                    self.c.width = parseInt(pStyle.width.slice(0,-2)) + 1;
+                    self.c.width = parseInt(pStyle.width.slice(0,-2)) -15;
                     self.c.height = window.innerHeight - toolbarHeight - headerHeight - 10;
                     draw();
                 }
