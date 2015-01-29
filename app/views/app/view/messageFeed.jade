@@ -1,9 +1,9 @@
-aside.messages
+aside.messages(ng-click="console.log(messages.messages)")
     ul.feed
-        li(ng-repeat="message in messages")
+        li(ng-repeat="message in messages.messages")
             time {{message.date | date:"h:mma"}} 
-            a(href="api/v1/user/{{message.user_id}}") {{(message.user_id === user._id) ? "You" : message.name }}
+            a(href="api/v1/user/{{message._creator._id}}") {{(message._creator._id === user._id) ? "You" : message._creator.name }}
             span : {{message.content}}
     form(ng-submit="send()")
         textarea(ng-model="msg" placeholder="Write a message..." ng-keydown="keyDown($event)" ng-keyup="keyUp($event)")
-        button Send
+        button Send {{messages.messages.length}}

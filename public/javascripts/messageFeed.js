@@ -2,7 +2,7 @@
     angular
         .module('app')
         .directive("messageFeed", MessageFeedDirective)
-        .factory("Message", MessageFactory)
+        .factory("MessageService", MessageService)
         .factory('User', UserFactory);
 
     function MessageFeedDirective($timeout) {
@@ -10,29 +10,22 @@
             restrict: "E",
             templateUrl: "/app/view/messageFeed",
             scope: {
-                imageID: "=imageId"
+                imageID:  "=imageId",
+                messages: "=messages"
             },
             link: function(scope, elem, attrs) {
-                $timeout(function() {
-                    scope.rendered();
-                }, 100); // TODO: remove hack on dom waiting
+
             },
-            controller: function($scope, $http, $element, Message){
+            controller: function($scope, $http, $element){
                 $scope.user = user;
                 $scope.msg = "";
-                $scope.messages = [];
                 var feed = $element[0].getElementsByClassName("feed")[0];
 
                 $scope.shift = false;
                 // User sends a new message
                 $scope.send = function() {
                     if ($scope.msg.length > 0) {
-                        addMessage({
-                            user_id: user._id,
-                            name: user.name,
-                            content: $scope.msg, 
-                            date: new Date()
-                        }, $scope.socket);
+                        addMessage( $scope.msg );
                         $scope.msg = "";
                     }
                 }
@@ -44,71 +37,70 @@
                     if (event.keyCode === 13 && ! $scope.shift) return $scope.send();
                 }
 
-                $scope.rendered = function() {
-                    $scope.socket = io();
-                    $scope.socket.emit("reset");
-                    $scope.socket.emit("join", $scope.imageID)
-                    // Someone sends a message
-                    $scope.socket.on("chat message", addMessage);
-
-                    $http.get("/api/v1/thread/" + $scope.imageID).success(function(data) {
-                        if (data) {
-                            data.comments.forEach(function(message) {
-                                addMessage(message)
-                            });
-                        }
-                    })
-                }
-
                 // Adds a message to the model, from either user sending, or from incoming message
-                function addMessage(data, socket) {
-                    $scope.messages.push( new Message($scope.imageID, data, socket) );
+                function addMessage( data ) {
+                    $scope.messages.new(data);
                     setTimeout(function() {
                         feed.scrollTop = feed.scrollHeight;
-                    })
+                    });
                 }
             }
         }
     }
 
     // Individual message to show in the feed
-    function MessageFactory(User) {
-        function Message(room, data, socket) {
-            this.init = function() {
-                var self = this;
+    function MessageService( $http, User ) {
+        var self = this;
+        this.socket = io();
+        this.factory = {
+            init: init,
+            new: _new,
+            messages: []
+        };
 
-                // Expose data
-                this.content = data.content;
-                this.user_id = data.user_id;
-                this.date    = data.date;
-                this.room = room;
+        this.socket.on("chat message", _addMessage);
 
+        function init( imageID ) {
+            self.socket.emit( "reset" );
+            self.socket.emit( "join", imageID );
+            self.room = imageID;
 
-                if (!data.name) {
-                    User.get({id: data.user_id}, function(data) {
-                        self.name = data.name;
-                        if (socket) self.emit(socket);
+            // Load the existing comments
+            $http.get( "/api/v1/thread/" + imageID ).success( function( data ) {
+                if ( data ) {
+                    data.comments.forEach( function( message ) {
+                        _addMessage( message )
                     });
-                } else {
-                    this.name = name;
-                    this.user_id = data.user_id;
-                    if (socket) this.emit(socket);
                 }
+            } );
+        }
 
-            }
-            this.emit = function(socket) {
-                socket.emit("chat message", this.room, {
-                    user_id: this.user_id,
-                    content: this.content,
-                    date: this.date
+
+        function _new(content) {
+            var message = {
+                _creator: user._id,
+                content: content,
+                date: new Date()
+            };
+
+            self.socket.emit( "chat message", self.room, message );
+            _addMessage( message );
+        }
+
+        function _addMessage( message ) {
+            if (typeof message._creator === "string") {
+                User.get( { id: message._creator } ).$promise.then(function(_user) {
+                    message._creator = _user;
                 });
             }
-            this.init();
+            self.factory.messages.push( message );
         }
-        return Message;
+
+
+        return this.factory;
     }
 
-    function UserFactory($resource) {
+    function UserFactory( $resource ) {
         return $resource("/api/v1/user/:id");
     }
     

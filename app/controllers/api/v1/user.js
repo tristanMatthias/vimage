@@ -45,7 +45,7 @@ module.exports = function(path, app) {
 
     // List specific user
     app.get(path+":id", auth, function(req, res, next) {
-        User.find(
+        User.findOne(
             {_id:req.params.id, disabled: false}, 
             "_id name email permission", 
             send(req, res, next)

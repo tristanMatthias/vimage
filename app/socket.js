@@ -5,7 +5,6 @@ module.exports = function( server ) {
 
     io.on( 'connection', function( socket ){
         socket.on( "join", function( room ) {
-            console.log( room );
             socket.room = room;
             socket.join( room );
         });

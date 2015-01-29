@@ -10,7 +10,7 @@ module.exports.list = function(cb) {
 
 // List specific thread
 module.exports.find = function(id, cb) {
-    Thread.findOne({image_id: id}, cb);
+    Thread.findOne({image_id: id}).populate("comments._creator").exec(cb);
 }
 
 
@@ -18,7 +18,6 @@ module.exports.find = function(id, cb) {
 module.exports.add = function(id, data, cb) {
     // Check if thread on that image exists...
     Thread.find({image_id: id}, function(err, results) {
-        console.log(id);
         // If it does, throw error
         if (results.length) return cb(new Error("A thread on that image already exists"));
         // Otherwise create a new thread
