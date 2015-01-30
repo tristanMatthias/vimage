@@ -1,9 +1,9 @@
 ( function() {
     angular
-        .module(     "app"                  )
-        .controller( "ImageCtrl", ImageCtrl );
+        .module(     "app.image", []        )
+        .controller( "ImageContoller", ImageContoller );
 
-    function ImageCtrl( $scope, $routeParams, Image, MessageService ) {
+    function ImageContoller( $scope, $routeParams, Image, MessageService ) {
         $scope.route = $routeParams;
         $scope.image = Image.get( { _id: $routeParams.id } );
         $scope.messages = MessageService;

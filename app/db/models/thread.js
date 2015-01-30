@@ -9,6 +9,7 @@ module.exports = function(name) {
                 content: String,
                 date: Date,
                 _creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+                commentType: { type: String, default: "chat" }
             }
         ]
     });

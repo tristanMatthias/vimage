@@ -1,25 +1,15 @@
-(function() {
+( function() {
     angular
-        .module('app', [
+        .module( "app.admin", [
             "ngRoute", 
             "ngResource",
-            'angularFileUpload'
-        ])
-        .config(AppConfig)
-        .controller('AppController', AppController)
-        .factory('UserFactory', UserFactory);
+            "app.core",
+            "angularFileUpload"
+        ] )
+        
+        .controller( "AppController", AppController )
 
-
-    function AppConfig($routeProvider) {
-        $routeProvider
-            .when("/", {
-                templateUrl: "/admin/view/users",
-                controllerAs: "vm"
-            })
-            .otherwise({
-                redirectTo: "/"
-            });
-    }
+    
     function AppController($rootScope, $scope, UserFactory) {
         $rootScope.user      = user;
         $scope.order         = false;
@@ -45,14 +35,6 @@
             $scope.order = (column == $scope.column) ? !$scope.order : false;
             $scope.column = column;
         }
-    }
+    }    
 
-    function UserFactory($resource) {
-        return $resource("/api/v1/user/:id", {}, {
-            save:   { method:'put',    params: {id: '@_id'} },
-            delete: { method:'delete', params: {id: '@_id'} }
-
-        });
-    }
-
-})();
+} )();

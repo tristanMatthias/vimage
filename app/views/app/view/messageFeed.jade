@@ -1,9 +1,19 @@
-aside.messages(ng-click="console.log(messages.messages)")
+aside.messages( ng-click="console.log( messages.messages )" )
+    ul.tabs
+        li( ng-repeat="type in ['chat', 'approval']" ) {{ type | capitalize }}
     ul.feed
-        li(ng-repeat="message in messages.messages")
-            time {{message.date | date:"h:mma"}} 
-            a(href="api/v1/user/{{message._creator._id}}") {{(message._creator._id === user._id) ? "You" : message._creator.name }}
-            span : {{message.content}}
-    form(ng-submit="send()")
-        textarea(ng-model="msg" placeholder="Write a message..." ng-keydown="keyDown($event)" ng-keyup="keyUp($event)")
-        button Send {{messages.messages.length}}
+        li( ng-repeat="message in messages.messages | filter:{type: vm.showingType} " ng-switch="message.commentType" )
+            //- Chat message
+            div( ng-switch-when="chat" )
+                time {{message.date | date:"h:mma"}} 
+                a( href="api/v1/user/{{message._creator._id}}" ) {{ ( message._creator._id === user._id ) ? "You" : message._creator.name }}
+                span : {{message.content}}
+
+            //- Approval
+            div( ng-switch-when="approval" )
+                span {{ message }}
+
+
+    form( ng-submit="send()" )
+        textarea( ng-model="msg" placeholder="Write a message..." ng-keydown="keyDown($event )" ng-keyup="keyUp($event )" )
+        button Send

@@ -8,14 +8,18 @@ block vars
 
 block js
     script(src="/components/socket.io-client/socket.io.js")
-    script(src="/javascripts/app.js")
     script(src="/javascripts/imagesList.js")
     script(src="/javascripts/image.js")
     script(src="/javascripts/imageNew.js")
     script(src="/javascripts/messageFeed.js")
     script(src="/javascripts/imageCanvas.js")
     script(src="/javascripts/profile.js")
+
+
+    script(src="/javascripts/core/app.core.js")
+    script(src="/javascripts/core/filters.js")
     
+    script(src="/javascripts/app.js")
 
 block content
     .app
