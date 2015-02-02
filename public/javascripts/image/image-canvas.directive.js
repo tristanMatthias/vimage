@@ -103,6 +103,19 @@
                         } );
                         MessageService.new( "This is a new message" );
                     }
+                    if ( $scope.tool == "approve" ) {
+                        var coordStart = self.ctx.transformedPoint( dragStartAbsoluteX, dragStartAbsoluteY );
+                        self.comments.push( {
+                            x:       coordStart.x, 
+                            y:       coordStart.y, 
+                            width:   lastX - dragStartAbsoluteX, 
+                            height:  lastY  - dragStartAbsoluteY,
+                            content: "Hey wassup"
+                        } );
+                        MessageService.new( prompt("Message") , { 
+                            commentType: "approval"
+                        } );
+                    }
                 },false );
 
                 var scaleFactor = 1.1;
@@ -228,7 +241,7 @@
                 }
                 resize();
                 $scope.selectTool = function( tool ) {
-                    $scope.tool = tool
+                    $scope.tool = tool;
                 }
 
             }

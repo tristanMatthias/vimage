@@ -1,20 +1,22 @@
 
 aside.messages( ng-click="console.log( messages.messages )" )
     ul.tabs
-        li( ng-repeat="type in ['chat', 'approval']" ) {{ type | capitalize }}
+        li( ng-repeat="type in ['chat', 'approval']" ng-click="vm.showingType = type" ng-class="{ 'active':(type == vm.showingType) } ") {{ type | capitalize }}
     ul.feed
-        li( ng-repeat="message in messages.messages | filter:{type: vm.showingType} " ng-switch="message.commentType" )
+        li( ng-repeat="message in messages.messages | filter:{commentType: vm.showingType} " ng-switch="message.commentType" )
             //- Chat message
             div( ng-switch-when="chat" )
                 time {{message.date | date:"h:mma"}} 
-                a( href="api/v1/user/{{message._creator._id}}" ) {{ ( message._creator._id === user._id ) ? "You" : message._creator.name }}
+                a( href="api/v1/user/{{message._creator._id}}" ) {{ ( message._creator._id === vm.user._id ) ? "You" : message._creator.name }}
                 span : {{message.content}}
 
             //- Approval
             div( ng-switch-when="approval" )
                 span {{ message }}
+            div( ng-switch-default )
+                span {{ message }} 123
 
 
-    form( ng-submit="send()" )
-        textarea( ng-model="msg" placeholder="Write a message..." ng-keydown="keyDown($event )" ng-keyup="keyUp($event )" )
+    form( ng-submit="vm.send()" )
+        textarea( ng-model="vm.msg" placeholder="Write a message..." ng-keydown="vm.keyDown($event )" ng-keyup="vm.keyUp($event )" )
         button Send

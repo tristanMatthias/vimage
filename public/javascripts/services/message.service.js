@@ -30,14 +30,17 @@
         }
 
 
-        function _new( content, type ) {
+        function _new( content, settings ) {
             var message = {
                 _creator: user._id,
                 content: content,
-                commentType: type || "chat",
+                commentType: "chat",
                 date: new Date()
             };
-            console.log( message.commentType );
+            angular.extend( message, settings );
+
+
+            console.log( message );
 
             self.socket.emit( "chat message", self.room, message );
             _addMessage( message );

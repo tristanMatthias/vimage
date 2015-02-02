@@ -18,24 +18,30 @@
             controller: function($scope, $http, $element ) {
                 vm = this;
                 vm.type = "chat";
-                $scope.user = user;
-                $scope.msg = "";
-                var feed = $element[0].getElementsByClassName( "feed" )[0];
+                vm.user = user;
+                vm.msg = "";
+                vm.showingType = "chat";
 
-                $scope.shift = false;
+                vm.send    = send;
+                vm.keyDown = keyDown;
+                vm.keyUp   = keyUp;
+                
+                var feed  = $element[0].getElementsByClassName( "feed" )[0];
+                var shift = false;
+
                 // User sends a new message
-                $scope.send = function() {
-                    if ($scope.msg.length > 0 ) {
-                        addMessage( $scope.msg );
-                        $scope.msg = "";
+                function send() {
+                    if ( vm.msg.length > 0 ) {
+                        addMessage( vm.msg );
+                        vm.msg = "";
                     }
                 }
-                $scope.keyDown = function( event ) {
-                    if ( event.keyCode === 16 ) return $scope.shift = true;
+                function keyDown( event ) {
+                    if ( event.keyCode === 16 ) return shift = true;
                 }
-                $scope.keyUp = function( event ) {
-                    if ( event.keyCode === 16 ) $scope.shift = false;
-                    if ( event.keyCode === 13 && ! $scope.shift ) return $scope.send();
+                function keyUp( event ) {
+                    if ( event.keyCode === 16 ) shift = false;
+                    if ( event.keyCode === 13 && ! shift ) return vm.send();
                 }
 
                 // Adds a message to the model, from either user sending, or from incoming message

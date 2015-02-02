@@ -45,9 +45,13 @@ button:focus { background-color: #3088cf; }
 
 /* ========================================================================================================= Message Feed
  */
-message-feed { position: fixed; top: 4rem; right: 0; width: 20%; height: calc(100% - 4rem); border-left: 1px solid #ddd; background-color: white; font-size: 1.5rem; } 
+message-feed { position: absolute; top: 4rem; right: 0; width: 20%; height: calc(100% - 4rem); border-left: 1px solid #ddd; background-color: white; font-size: 1.5rem; } 
+message-feed aside { width: 100%; height: 100%; }
+message-feed .tabs { width: 100%; height: 4rem; }
+message-feed .tabs li { list-style: none; display: inline-block; width: 50%; line-height: 4rem; padding: 0 1rem; border-bottom: 3px solid #f8f8f8; text-align: center; cursor: pointer; }
+message-feed .tabs li.active { border-color: #52c5ff; }
 /*message-feed .messages { width: 100%; height: 100%; }*/
-message-feed .feed { position: absolute; width: 100%; top: 0; bottom: 4rem; overflow: auto; } 
+message-feed .feed { position: absolute; width: 100%; top: calc(4rem + 3px); bottom: 4rem; overflow: auto; } 
 message-feed .feed li { list-style: none; padding: 1rem; border-bottom: 1px solid #f8f8f8; word-wrap: break-word; }
 message-feed .feed li time { float: right; font-size: 1.2rem; color: #aaa; margin-left: 1rem; }
 message-feed form { position: absolute; width: 100%; display: block; bottom: 0; padding: 0;  }
