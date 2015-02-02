@@ -8,18 +8,36 @@ block vars
 
 block js
     script(src="/components/socket.io-client/socket.io.js")
-    script(src="/javascripts/imagesList.js")
-    script(src="/javascripts/image.js")
-    script(src="/javascripts/imageNew.js")
-    script(src="/javascripts/messageFeed.js")
-    script(src="/javascripts/imageCanvas.js")
+    
+    script(src="/javascripts/app/app.js")
+    script(src="/javascripts/app/app.controller.js")
+    script(src="/javascripts/app/app.config.js")
+    
+    script(src="/javascripts/core/app.core.js")
+
+    script( src="/javascripts/image-list/image-list.js" )
+    script( src="/javascripts/image-list/image-list.controller.js" )
+    script( src="/javascripts/services/image.service.js" )
+
+    script( src="/javascripts/image/image.js" )
+    script( src="/javascripts/image/image.controller.js" )
+    script( src="/javascripts/image/image-canvas.directive.js" )
+
+    script( src="/javascripts/image-new/image-new.js" )
+    script( src="/javascripts/image-new/image-new.controller.js" )
+
+    script( src="/javascripts/messages/messages.js" )
+    script( src="/javascripts/services/message.service.js" )
+    script( src="/javascripts/services/user.service.js" )
+    script( src="/javascripts/messages/message-feed.directive.js" )
+
+
+
     script(src="/javascripts/profile.js")
 
 
-    script(src="/javascripts/core/app.core.js")
     script(src="/javascripts/core/filters.js")
     
-    script(src="/javascripts/app.js")
 
 block content
     .app

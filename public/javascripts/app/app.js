@@ -4,6 +4,10 @@
             "ngRoute", 
             "ngResource",
             "angularFileUpload",
-            "app.core"
+            "app.core",
+            "app.image-list",
+            "app.image-new",
+            "app.image",
+            "app.messages"
         ] );
 } )();

@@ -1,10 +1,10 @@
-link(rel="stylesheet", href="/stylesheets/app/image-list.css")
+link( rel="stylesheet", href="/stylesheets/app/image-list.css" )
 
 main
     ul.image-list
-        li(ng-repeat="image in images")
-            a(ng-href="#/images/{{image._id}}") 
-                img(ng-src="{{image.url}}")
-            a(ng-href="#/images/{{image._id}}") 
+        li( ng-repeat="image in images" )
+            a( ng-href="#/images/{{image._id}}" ) 
+                img( ng-src="{{image.url}}" )
+            a( ng-href="#/images/{{image._id}}" ) 
                 span {{image.name}}
-            button(ng-click="delete(image._id)") Delete
+            button( ng-click="delete( image._id )" ) Delete

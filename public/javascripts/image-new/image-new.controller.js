@@ -3,11 +3,12 @@
         .module( "app.image-new" )
         .controller( "ImageNewController", ImageNewController );
 
-    function ImageNewController( $scope, Image, $upload, $location ) {
+    function ImageNewController( $scope, ImageFactory, $upload, $location ) {
         $scope.name = "";
         $scope.url = "";
         $scope.user = user;
         $scope.image = [];
+
         
         $scope.addImage = function() {
             console.log( $scope.image[0] )

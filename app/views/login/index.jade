@@ -2,7 +2,7 @@ extends ../layout-app
 
 
 block vars
-    -var app = "login"
+    -var app = "app.login"
     -var appController = "LoginController as vm"
 
 
@@ -12,6 +12,7 @@ block css
 
 block js
     script( src="/javascripts/login/login.js" )
+    script( src="/javascripts/login/login.controller.js" )
 
 
 block content

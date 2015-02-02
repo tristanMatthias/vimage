@@ -3,7 +3,7 @@
         .module("app.messages")
         .directive( "messageFeed", MessageFeedDirective )
 
-    function MessageFeedDirective($timeout ) {
+    function MessageFeedDirective( $timeout ) {
         return {
             restrict: "E",
             templateUrl: "/app/view/messageFeed",

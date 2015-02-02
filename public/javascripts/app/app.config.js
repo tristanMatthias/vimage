@@ -7,19 +7,19 @@
         $routeProvider
             .when( "/", {
                 templateUrl: "/app/view/images-list",
-                controller: "ImagesListCtrl"
+                controller: "ImagesListController"
             } )
             .when( "/images/:id", {
                 templateUrl: "/app/view/image",
-                controller: "ImageCtrl"
+                controller: "ImageController"
             } )
             .when( "/new-image", {
                 templateUrl: "/app/view/image-new",
-                controller: "ImageNewCtrl"
+                controller: "ImageNewController"
             } )
             .when( "/account", {
                 templateUrl: "/account/profile",
-                controller: "ProfileCtrl"
+                controller: "ProfileController"
             } )
             .otherwise( {
                 redirectTo: "/"

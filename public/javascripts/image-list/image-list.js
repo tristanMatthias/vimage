@@ -1,4 +1,4 @@
 ( function() {
     angular
-        .module("app.image-list", [] );
+        .module( "app.image-list", [] );
 } )();

@@ -3,7 +3,7 @@
         .module( "app.core" )
         .service( 'MessageService', MessageService );
 
-    function MessageService( $http, User ) {
+    function MessageService( $http, UserFactory ) {
         var self = this;
         this.socket = io();
         this.factory = {
@@ -45,7 +45,7 @@
 
         function _addMessage( message ) {
             if ( typeof message._creator === "string" ) {
-                User.get( { id: message._creator } ).$promise.then( function( _user ) {
+                UserFactory.get( { id: message._creator } ).$promise.then( function( _user ) {
                     message._creator = _user;
                 } );
             }

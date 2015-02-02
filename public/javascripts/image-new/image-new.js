@@ -1,4 +1,4 @@
 ( function() {
     angular
-        .module( "app.image-new" , [] )
+        .module( "app.image-new", [] );
 } )();

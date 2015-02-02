@@ -1,15 +1,16 @@
-link(rel="stylesheet", href="/stylesheets/app/image-new.css")
-form(ng-submit="addImage()")
+link( rel="stylesheet", href="/stylesheets/app/image-new.css" )
+
+form( ng-submit="addImage()" )
     h2 Add a new image
-    input(placeholder="Name" ng-model="name")
-    input(type="file" 
+    input( placeholder="Name" ng-model="name" )
+    input( type="file" 
           ng-file-select
-          ng-file-change="onFileSelect($files)"
+          ng-file-change="onFileSelect( $files )"
           ng-multiple="false"
           ng-model="image"
           placeholder="Image"
     )
     
-    div.img(ng-show="url.length > 0")
-        img(src="{{url}}")
+    div.img( ng-show="url.length > 0" )
+        img( src="{{url}}" )
     button Add image
